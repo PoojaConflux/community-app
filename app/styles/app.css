@@ -438,6 +438,10 @@ tr.pointer-main:hover {
   width: 20px;
 }
 
+.input-mini-medium {
+    width: 30px;
+}
+
 .input-smaller {
   width: 65px;
 }
@@ -1098,4 +1102,10 @@ input#search:-ms-input-placeholder {
 }
 .modalwidth600{
     width: 600px;
+}
+.bold{
+    font-weight: bold;
+}
+.grey th{
+    background-color: #F5F5F5 !important;
 }
