@@ -33,10 +33,10 @@
         scope.formData.interestFreePeriodFrequencyTypeId = scope.product.interestFreePeriodTypeOptions[0].id;
         scope.formData.recurringDepositTypeId = scope.product.recurringDepositTypeOptions[0].id;
         scope.formData.recurringDepositFrequencyTypeId = scope.product.recurringDepositFrequencyTypeOptions[0].id;
-
         //set chart template
         scope.chart = scope.product.chartTemplate;
-        scope.chart.chartSlabs = [];
+        scope.chart.chartSlabs = [{periodType:{id:scope.chart.periodTypes[0].id}}];
+        
 
         if (scope.assetAccountOptions.length > 0) {
           scope.formData.savingsReferenceAccountId = scope.assetAccountOptions[0].id;
@@ -145,6 +145,8 @@
         scope.chargesSelected = [];
 
         var temp = '';
+        var reqfromDate= dateFilter(scope.fromDate.date, scope.df);
+        var reqenddate = dateFilter(scope.endDate.date, scope.df);
 
         //configure fund sources for payment channels
         for (var i in scope.configureFundOptions) {
@@ -187,6 +189,33 @@
         this.formData.locale = "en";
         this.formData.charts = [];//declare charts array
         this.formData.charts.push(copyChartData(scope.chart));//add chart details
+        if(scope.chart.chartSlabs && scope.chart.chartSlabs.length==1)
+        {
+          if (!scope.chart.chartSlabs.amountRangeFrom || !scope.chart.chartSlabs.amountRangeTo || 
+            !scope.chart.chartSlabs.annualInterestRate || !scope.chart.chartSlabs.periodType || 
+            !scope.chart.chartSlabs.fromPeriod || !scope.chart.chartSlabs.toPeriod) {
+            scope.errorDetails = [];
+            var errorObj = new Object();
+            errorObj.code = 'error.message.Enter atleast one chartSlab';
+            scope.errorDetails.push(errorObj);
+          };
+
+        }
+       /* if (scope.fromDate.date) {
+                    reqfromdate = dateFilter(scope.fromDate.date, scope.df);
+                    this.fromDate.date = reqfromDate;
+                    console.log(scope.fromDate.date);
+                }
+        if (scope.endDate.date) {
+            reqenddate = dateFilter(scope.endDate.date, scope.df);
+            this.endDate.date = reqenddate;
+            console.log(scope.endDate.date);
+                }*/
+
+
+        /*console.log(scope.fromDate.date+"startdate");*/
+/*var chartName =this.formData.name +"-"+scope.fromDate.date+"-"+scope.endDate.date;
+console.log(chartName);*/
 
         resourceFactory.recurringDepositProductResource.save(this.formData, function (data) {
           location.path('/viewrecurringdepositproduct/' + data.resourceId);
@@ -236,8 +265,20 @@
        */
 
       copyChartData = function () {
+        var reqfromDate= dateFilter(scope.fromDate.date, scope.df);
+        var reqenddate = dateFilter(scope.endDate.date, scope.df);
+        if (scope.fromDate.date) {
+                    reqfromdate = dateFilter(scope.fromDate.date, scope.df);
+                    this.fromDate.date = reqfromDate;
+                    /*console.log(scope.fromDate.date);*/
+                }
+        if (scope.endDate.date) {
+            reqenddate = dateFilter(scope.endDate.date, scope.df);
+            this.endDate.date = reqenddate;
+            /*console.log(scope.endDate.date);*/
+                }
         var newChartData = {
-          name: scope.chart.name,
+          name: scope.formData.name +"/"+reqfromDate+"/"+reqenddate,
           description: scope.chart.description,
           fromDate: dateFilter(scope.fromDate.date, scope.df),
           endDate: dateFilter(scope.endDate.date, scope.df),
