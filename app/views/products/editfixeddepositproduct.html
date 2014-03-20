@@ -41,7 +41,7 @@
         </td>
         <td width="30%">
           <label class="control-label">{{ 'label.input.nominalannualinterestrate' | translate }}&nbsp;<span class="required">*</span></label>
-          <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" class="input-mini-medium" ng-model="formData.nominalAnnualInterestRate" required late-validate/>
+          <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" class="input-small" ng-model="formData.nominalAnnualInterestRate" required late-validate/>
             <form-validate valattributeform="createfixeddepositproductform" valattribute="nominalAnnualInterestRate"/>
         </td>
       </tr>
@@ -63,7 +63,10 @@
         </td>
       </tr>
       <tr>
-       <td width="40%"></td>
+       <td width="40%">
+          <!-- <label class="control-label">{{ 'label.input.fixeddepositamount' | translate }}&nbsp;</label>
+                    <input id="minRequiredOpeningBalance" class="input-small"input-small type="text" ng-model="formData.minRequiredOpeningBalance"> -->
+        </td>
        <td width="30%">
         <label class="control-label">{{ 'label.input.interestcalculatedusing' | translate }}&nbsp;<span class="required">*</span></label>
         <select id="interestCalculationType" ng-model="formData.interestCalculationType" ng-options="type.id as type.value for type in product.interestCalculationTypeOptions" value="{{type.id}}">
@@ -94,7 +97,10 @@
             <option style="display:none" value="">{{'label.selectone' | translate}}</option>
         </select>
       </td>
-      <td width="30%"></td>
+      <td width="30%">
+        <label class="control-label">{{ 'label.input.fixeddepositamount' | translate }}&nbsp;</label>
+                    <input id="minRequiredOpeningBalance" class="input-small"input-small type="text" ng-model="formData.minRequiredOpeningBalance">
+      </td>
     </tr>
     <tr>
       <td width="40%">
@@ -168,14 +174,14 @@
     <td colspan="3">
       <table>
         <tr>
-              <td width="50%">
+              <td width="57%">
                 <label class="control-label"><h4>{{ 'label.heading.interestchart' | translate }}</h4></label>
           </td>
-         <td width="25%">
+         <td width="22%">
           <label class="control-label" for="name">{{ 'label.input.interestratechart.valid.from' | translate }}<span class="required">*</span></label>
           <input id="fromDate" class="input-small" sort type="text"  datepicker-pop="dd MMMM yyyy" ng-model="fromDate.date" is-open="opened" min="minDate" max="restrictDate"/>
          </td>
-         <td width="25%">
+         <td width="21%">
            <label class="control-label" for="name">{{ 'label.input.interestratechart.valid.to' | translate }}<span class="required">*</span></label>
            <input id="endDate" class="input-small" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="endDate.date"
            is-open="opened" min="minDate" max="restrictDate"/>
@@ -241,9 +247,9 @@
     </tr>
     <tr class="control-group">
       <td colspan="3">
-       <table>
+      <table>
         <tr>
-          <td width="46%"> 
+          <td width="54%"> 
                 <label class="control-label"><h4>{{ 'label.heading.charges' | translate }}</h4></label>
               </td>
               <td>
@@ -255,7 +261,7 @@
                 <a class="btn btn-primary" ng-click="chargeSelected(chargeId)">{{ 'label.button.add' | translate }}</a>
               </td>
             </tr>
-          </table>
+      </table>
           <table class="table" width="100%">
                     <tr class="graybg">
                       <th>{{'label.heading.name' | translate}}</th>
@@ -351,20 +357,20 @@
           </tr>
         </table>
         <table>
-    <tr class="control-group">
-        <td>
+          <tr class="control-group">
+            <td>
             <h4>{{'label.heading.advancedaccountingrules' | translate}}[<a ng-click="showOrHide(showOrHideValue)">{{showOrHideValue}}</a>]
             </h4></br>
-        </td>
-    </tr>
-    <tr class="control-group">
-      <td>
-        <table ng-show = "showOrHideValue == 'hide'">
-          <tr>
-            <td>{{'label.heading.configurefundsourcesforpaymentchannels' | translate}}</td>
-            <td></td>
+            </td>
           </tr>
-          <tr>
+          <tr class="control-group">
+            <td>
+              <table ng-show = "showOrHideValue == 'hide'">
+                <tr>
+                  <td>{{'label.heading.configurefundsourcesforpaymentchannels' | translate}}</td>
+                  <td></td>
+                </tr>
+                <tr>
             <td><a class="btn btn-primary" ng-click="addConfigureFundSource()">{{ 'label.button.add' | translate }}</a></td>
           </tr>
           <tr>
@@ -467,7 +473,7 @@
 </tr>
 </table>
 
-<div class="offset6 paddedtop">
+<div class="offset5 paddedtop">
       <button id="cancel" type="reset" class="btn btn-warning" ng-click="cancel()">{{'label.button.cancel' | translate}}</button>
       <button id="save" type="submit" class="btn btn-primary">{{'label.button.save' | translate}}</button>
     </div>

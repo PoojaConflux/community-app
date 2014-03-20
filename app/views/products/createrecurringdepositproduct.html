@@ -38,7 +38,7 @@
     </td>
     <td width="30%">
       <label class="control-label">{{ 'label.input.nominalannualinterestrate' | translate }}&nbsp;<span class="required">*</span></label>
-      <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" class="input-mini-medium" ng-model="formData.nominalAnnualInterestRate" required late-validate/>
+      <input id="nominalAnnualInterestRate" name="nominalAnnualInterestRate" type="text" class="input-small" ng-model="formData.nominalAnnualInterestRate" required late-validate/>
       <form-validate valattributeform="createrecurringdepositproductform" valattribute="nominalAnnualInterestRate"/>
     </td>
   </tr>
@@ -75,27 +75,27 @@
   <tr>
     <td width="40%">
       <label class="control-label">{{ 'label.select.recurringdeposittype' | translate }}&nbsp;</label>
-      <select id="recurringDepositTypeId" ng-model="formData.recurringDepositTypeId"
-      class="input-small"
-      ng-options="type.id as type.value for type in product.recurringDepositTypeOptions"
-      value="{{type.id}}">
-      <option style="display:none" value="">{{'label.selectone' | translate}}</option>
-      </select>
-    </td>
-    <td width="30%">
-      <label class="control-label">{{ 'label.input.recurringdepositfrequency' | translate }}&nbsp;</label>
-      <input id="recurringDepositFrequency" class="input-mini-medium" type="text" ng-model="formData.recurringDepositFrequency">
-      &nbsp;&nbsp;
-      <select id="recurringDepositFrequencyTypeId" ng-model="formData.recurringDepositFrequencyTypeId"
-      class="input-small"
-      ng-options="type.id as type.value for type in product.recurringDepositFrequencyTypeOptions"
-      value="{{type.id}}">
-      <option style="display:none" value="">{{'label.selectone' | translate}}</option>
-      </select>
+                    <select id="recurringDepositTypeId" ng-model="formData.recurringDepositTypeId"
+                            class="input-small"
+                            ng-options="type.id as type.value for type in product.recurringDepositTypeOptions"
+                            value="{{type.id}}">
+                      <option style="display:none" value="">{{'label.selectone' | translate}}</option>
+                    </select>
     </td>
     <td width="30%">
       <label class="control-label">{{ 'label.input.recurringdepositamount' | translate }}&nbsp;</label>
-      <input id="minRequiredOpeningBalance" class="input-small"input-small type="text" ng-model="formData.minRequiredOpeningBalance">
+                    <input id="minRequiredOpeningBalance" class="input-small"input-small type="text" ng-model="formData.minRequiredOpeningBalance">
+    </td>
+    <td width="30%">
+      <label class="control-label">{{ 'label.input.recurringdepositfrequency' | translate }}&nbsp;</label>
+                    <input id="recurringDepositFrequency" type="text" ng-model="formData.recurringDepositFrequency" class="input-small">
+                    &nbsp;&nbsp;
+                    <select id="recurringDepositFrequencyTypeId" ng-model="formData.recurringDepositFrequencyTypeId"
+                            class="input-small"
+                            ng-options="type.id as type.value for type in product.recurringDepositFrequencyTypeOptions"
+                            value="{{type.id}}">
+                      <option style="display:none" value="">{{'label.selectone' | translate}}</option>
+                    </select>
     </td>
   </tr>
   <tr>
@@ -181,21 +181,28 @@
    <td><hr class="marginbottom"></td>
    <td><hr class="marginbottom"></td>
   </tr>
-  <tr>
-    <td width="40%">
-      <label class="control-label"><h4>{{ 'label.heading.interestchart' | translate }}</h4></label>
-   </td>
-   <td>
+    <tr class="control-group">
+        <td colspan="3">
+          <table>
+            <tr>
+              <td width="57%">
+                <label class="control-label"><h4>{{ 'label.heading.interestchart' | translate }}</h4></label>
+        </td>
+   <td width="22%">
       <label class="control-label" for="name">{{ 'label.input.interestratechart.valid.from' | translate }}<span class="required">*</span></label>
       <input id="fromDate" class="input-small" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="fromDate.date"
       is-open="opened" min="minDate" max="restrictDate"/>
     </td>
-    <td>
+   <td width="21%">
         <label class="control-label" for="name">{{ 'label.input.interestratechart.valid.to' | translate }}<span class="required">*</span></label>
         <input id="endDate" class="input-small" sort type="text" datepicker-pop="dd MMMM yyyy" ng-model="endDate.date"
         is-open="opened" min="minDate" max="restrictDate"/>
     </td>
   </tr>
+</table>
+</td>
+</tr>
+
   <tr>
     <td colspan="3">
       <table class="table table-bordered" width="100%">
@@ -248,14 +255,21 @@
    </tr>
   <tr class="control-group">
     <td colspan="3">
-      <form>
-        <select ng-model="chargeId"
-          ng-options="charge.id as ((charge.name+' '+'('+charge.currency.name+')')) for charge in product.chargeOptions"
-          value="{{charge.id}}">
-          <option style="display:none" value="">{{'label.selectcharge' | translate}}</option>
-        </select>
-        <a class="btn btn-primary" ng-click="chargeSelected(chargeId)">{{ 'label.button.add' | translate }}</a>
-      </form>
+     <table>
+        <tr>
+          <td width="54%"> 
+            <label class="control-label"><h4>{{ 'label.heading.charges' | translate }}</h4></label>
+          </td>
+          <td>   
+            <select ng-model="chargeId" ng-options="charge.id as ((charge.name+' '+'('+charge.currency.name+')')) for charge in product.chargeOptions"
+              value="{{charge.id}}">
+            <option style="display:none" value="">{{'label.selectcharge' | translate}}</option>
+            </select>
+          </td>
+            <td><a class="btn btn-primary" ng-click="chargeSelected(chargeId)">{{ 'label.button.add' | translate }}</a>
+            </td>
+        </tr>
+      </table>
       <table class="table" width="100%">
         <tr class="graybg">
           <th>{{'label.heading.name' | translate}}</th>
@@ -286,7 +300,7 @@
        <td><hr class="marginbottom"></td>
        <td><hr class="marginbottom"></td>
       </tr>
-  <tr>
+  <!-- <tr>
   <td>
     <div class="control-label"><h4>Accounting Rule</h4></div>
     <td>
@@ -294,7 +308,24 @@
     <input type="radio" ng-model="formData.accountingRule" value="2">{{'label.input.cash' | translate}}
   </td>
   </td>
+</tr> -->
+<tr class="control-group">
+  <td colspan="3">
+    <table>
+      <tr>
+        <td width="55%">
+          <label class="control-label"><h4>Accounting Rule</h4></label>
+        </td>
+        <td width="25%">
+          <input type="radio" ng-model="formData.accountingRule" value="1">{{'label.input.none' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" ng-model="formData.accountingRule" value="2">{{'label.input.cash' | translate}}
+        </td>
+        <td width="20%"></td> 
+      </tr>
+    </table>
+  </td>
 </tr>
+
   <tr ng-show="formData.accountingRule==2" class="control-group">
             <td colspan="3">
               <table width="100%">

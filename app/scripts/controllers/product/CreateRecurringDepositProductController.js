@@ -33,6 +33,7 @@
         scope.formData.interestFreePeriodFrequencyTypeId = scope.product.interestFreePeriodTypeOptions[0].id;
         scope.formData.recurringDepositTypeId = scope.product.recurringDepositTypeOptions[0].id;
         scope.formData.recurringDepositFrequencyTypeId = scope.product.recurringDepositFrequencyTypeOptions[0].id;
+        
         //set chart template
         scope.chart = scope.product.chartTemplate;
         scope.chart.chartSlabs = [{periodType:{id:scope.chart.periodTypes[0].id}}];
@@ -191,9 +192,9 @@
         this.formData.charts.push(copyChartData(scope.chart));//add chart details
         if(scope.chart.chartSlabs && scope.chart.chartSlabs.length==1)
         {
-          if (!scope.chart.chartSlabs.amountRangeFrom || !scope.chart.chartSlabs.amountRangeTo || 
-            !scope.chart.chartSlabs.annualInterestRate || !scope.chart.chartSlabs.periodType || 
-            !scope.chart.chartSlabs.fromPeriod || !scope.chart.chartSlabs.toPeriod) {
+          if (!scope.chart.chartSlabs[0].amountRangeFrom || !scope.chart.chartSlabs[0].amountRangeTo || 
+            !scope.chart.chartSlabs[0].annualInterestRate || !scope.chart.chartSlabs[0].periodType || 
+            !scope.chart.chartSlabs[0].fromPeriod || !scope.chart.chartSlabs[0].toPeriod) {
             scope.errorDetails = [];
             var errorObj = new Object();
             errorObj.code = 'error.message.Enter atleast one chartSlab';
@@ -201,21 +202,21 @@
           };
 
         }
-       /* if (scope.fromDate.date) {
+      if (scope.fromDate.date) {
                     reqfromdate = dateFilter(scope.fromDate.date, scope.df);
                     this.fromDate.date = reqfromDate;
-                    console.log(scope.fromDate.date);
+                    /*console.log(scope.fromDate.date);*/
                 }
         if (scope.endDate.date) {
             reqenddate = dateFilter(scope.endDate.date, scope.df);
             this.endDate.date = reqenddate;
-            console.log(scope.endDate.date);
-                }*/
+            /*console.log(scope.endDate.date);*/
+                }
 
 
         /*console.log(scope.fromDate.date+"startdate");*/
-/*var chartName =this.formData.name +"-"+scope.fromDate.date+"-"+scope.endDate.date;
-console.log(chartName);*/
+var chartName =this.formData.name +"/"+scope.fromDate.date+"/"+scope.endDate.date;
+/*console.log(chartName);*/
 
         resourceFactory.recurringDepositProductResource.save(this.formData, function (data) {
           location.path('/viewrecurringdepositproduct/' + data.resourceId);

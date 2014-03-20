@@ -84,6 +84,9 @@
             scope.formData.depositTermTypeId = depositTermTypeId;
             scope.formData.inMultiplesOfDepositTerm = data.inMultiplesOfDepositTerm;
             scope.formData.inMultiplesOfDepositTermTypeId = inMultiplesOfDepositTermTypeId;
+            scope.formData.depositAmount=10000;
+            scope.formData.depositPeriod=1;
+            scope.formData.depositPeriodFrequencyId=2;
 
           });
         };

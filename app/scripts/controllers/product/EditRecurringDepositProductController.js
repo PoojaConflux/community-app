@@ -206,7 +206,7 @@
       }
 
       scope.cancel = function () {
-        location.path('/viewrecurringdepositproduct/' + routeParams.id);
+        location.path('/viewrecurringdepositproduct/' + routeParams.productId);
       };
 
       scope.submit = function () {
@@ -216,6 +216,8 @@
         scope.chargesSelected = [];
 
         var temp = '';
+        var reqfromDate= dateFilter(scope.fromDate.date, scope.df);
+        var reqenddate = dateFilter(scope.endDate.date, scope.df);
 
         //configure fund sources for payment channels
         for (var i in scope.configureFundOptions) {
@@ -259,6 +261,17 @@
         this.formData.charts = [];//declare charts array
         this.formData.charts.push(copyChartData(scope.chart));//add chart details
         this.formData = removeEmptyValues(this.formData);
+        if (scope.fromDate.date) {
+                    reqfromdate = dateFilter(scope.fromDate.date, scope.df);
+                    this.fromDate.date = reqfromDate;
+                    /*console.log(scope.fromDate.date);*/
+                }
+        if (scope.endDate.date) {
+            reqenddate = dateFilter(scope.endDate.date, scope.df);
+            this.endDate.date = reqenddate;
+            /*console.log(scope.endDate.date);*/
+                }
+        var chartName =this.chart.name=scope.formData.name +"/"+reqfromDate+"/"+reqenddate;
         resourceFactory.recurringDepositProductResource.update({productId: routeParams.productId}, this.formData, function (data) {
           location.path('/viewrecurringdepositproduct/' + data.resourceId);
         });
@@ -301,9 +314,21 @@
        */
 
       copyChartData = function () {
+        var reqfromDate= dateFilter(scope.fromDate.date, scope.df);
+        var reqenddate = dateFilter(scope.endDate.date, scope.df);
+        if (scope.fromDate.date) {
+                    reqfromdate = dateFilter(scope.fromDate.date, scope.df);
+                    this.fromDate.date = reqfromDate;
+                    /*console.log(scope.fromDate.date);*/
+                }
+        if (scope.endDate.date) {
+            reqenddate = dateFilter(scope.endDate.date, scope.df);
+            this.endDate.date = reqenddate;
+            /*console.log(scope.endDate.date);*/
+                }
         var newChartData = {
           id: scope.chart.id,
-          name: scope.chart.name,
+          name: scope.formData.name +"/"+reqfromDate+"/"+reqenddate,
           description: scope.chart.description,
           fromDate: dateFilter(scope.fromDate.date, scope.df),
           endDate: dateFilter(scope.endDate.date, scope.df),

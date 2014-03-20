@@ -203,7 +203,7 @@
       }
 
       scope.cancel = function () {
-        location.path('/viewfixeddepositproduct/' + routeParams.id);
+        location.path('/viewfixeddepositproduct/' + routeParams.productId);
       };
 
       scope.submit = function () {
@@ -268,7 +268,7 @@
             this.endDate.date = reqenddate;
             /*console.log(scope.endDate.date);*/
                 }
-        this.chart.name=scope.formData.name +"/"+reqfromDate+"/"+reqenddate;
+       var chartName = this.chart.name=scope.formData.name +"/"+reqfromDate+"/"+reqenddate;
         resourceFactory.fixedDepositProductResource.update({productId: routeParams.productId}, this.formData, function (data) {
           location.path('/viewfixeddepositproduct/' + data.resourceId);
         });
