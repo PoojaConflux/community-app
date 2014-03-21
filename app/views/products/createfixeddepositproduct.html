@@ -398,6 +398,38 @@
                   </tr>
                   
               </table>
+              
+              <table width="100%">
+        
+                  <tr>
+                    <td width="15%"></td>
+                    <td width="35%">
+                       <label class="control-label">{{ 'label.input.overdraftportfoliocontrol' | translate }}&nbsp;</label>
+                       <!-- <a tooltip="{{'label.tooltip.overdraftprotfolio' | translate}}"><i
+                         class="icon-question-sign  icon-white"></i> -->
+                        <select id="overdraftPortfolioControlId" ng-model="formData.overdraftPortfolioControlId"
+                        chosen="assetAccountOptions"
+                        ng-options="assetAccount.id as assetAccount.name for assetAccount in assetAccountOptions"
+                        value="{{assetAccount.id}}">
+                      </select>
+                    </td>
+                    <td width="15%"></td>
+                    <td width="35%">
+                      <label class="control-label">{{ 'label.input.writeOff' | translate }}&nbsp;</label>
+                      <!-- <a tooltip="{{'label.tooltip.Writeoffoverdraft' | translate}}"><i
+                       class="icon-question-sign  icon-white"></i> -->
+                       <select id="writeOffAccountId" ng-model="formData.writeOffAccountId" chosen="expenseAccountOptions"
+                        ng-options="expenseAccount.id as expenseAccount.name for expenseAccount in expenseAccountOptions"
+                        value="{{expenseAccount.id}}">
+                        </select>
+                    </td>
+                  </tr>
+                </table>
+
+
+
+
+
               <table width="100%">
                   <!-- <tr>
                     <td colspan="4"><hr class="marginbottom"></td>
@@ -443,6 +475,22 @@
                               value="{{incomeAccount.id}}">
                           </select>
                       </td>
+                  </tr>
+                  <tr>
+                    <td width="15%"></td>
+                    <td width="35%"></td>
+                    <td width="15%"></td>
+                    <td width="35%">
+                       
+                         <label class="control-label">{{ 'label.input.incomefrominterest' | translate }}&nbsp;</label>
+                        <!-- <a tooltip="{{'label.tooltip.incomefromoverdraftinterest' | translate}}"><i
+                         class="icon-question-sign  icon-white"></i> -->
+                        <select id="incomeFromInterestId" ng-model="formData.incomeFromInterestId" chosen="incomeAccountOptions"
+                        ng-options="incomeAccount.id as incomeAccount.name for incomeAccount in incomeAccountOptions"
+                        value="{{incomeAccount.id}}">
+                       </select>
+                   
+                    </td>
                   </tr>
               </table>
                 

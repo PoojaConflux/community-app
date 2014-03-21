@@ -140,6 +140,8 @@
       };
 
       scope.submit = function () {
+
+        delete scope.errorDetails;
         scope.paymentChannelToFundSourceMappings = [];
         scope.feeToIncomeAccountMappings = [];
         scope.penaltyToIncomeAccountMappings = [];
